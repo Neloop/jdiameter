@@ -360,6 +360,7 @@ public class PeerFSMImpl implements IStateMachine {
     boolean rc = false;
     try {
       if (logger.isDebugEnabled()) {
+        logger.error("*** Before placing into thread-pool '{}' ns", System.nanoTime());
         logger.debug("Placing event [{}] into linked blocking queue with remaining capacity: [{}].", event, eventQueue.remainingCapacity());
         //PCB added logging
         //int queueSize = eventQueue.size();

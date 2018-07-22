@@ -207,6 +207,7 @@ public class TCPTransportClient implements Runnable {
         selector.select(SELECT_TIMEOUT);
         Iterator<SelectionKey> it = selector.selectedKeys().iterator();
         while (it.hasNext()) {
+          logger.error("*** Part of message received in '{}' ns", System.nanoTime());
           // Get the selection key
           SelectionKey selKey = it.next();
           // Remove it from the list to indicate that it is being processed
@@ -437,6 +438,7 @@ public class TCPTransportClient implements Runnable {
       try {
         // make a message out of data and process it
         logger.debug("Passing message on to parent");
+        logger.error("*** Before passing to parent '{}' ns", System.nanoTime());
         getParent().onMessageReceived(ByteBuffer.wrap(data));
         logger.debug("Finished passing message on to parent");
       }

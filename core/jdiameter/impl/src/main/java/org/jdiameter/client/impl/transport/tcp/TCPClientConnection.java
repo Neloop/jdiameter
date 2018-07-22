@@ -350,7 +350,9 @@ public class TCPClientConnection implements IConnection {
               break;
             case MESSAGE_RECEIVED:
               //PCB added
+              logger.error("*** Before parsing '{}' ns", System.nanoTime());
               IMessage msg = parser.createMessage(event.message);
+              logger.error("*** After parsing '{}' ns", System.nanoTime());
               //timerMap.put(msg.getEndToEndIdentifier() + "_"+ msg.getHopByHopIdentifier(), System.currentTimeMillis());
               listener.messageReceived(getKey(), msg);
               break;
